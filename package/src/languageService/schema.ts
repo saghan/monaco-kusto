@@ -37,7 +37,7 @@ export interface Database {
     minorVersion: number;
 }
 
-export type ClusterType = 'Engine' | 'DataManagement' | 'ClusterManager' | 'ARG';
+export type ClusterType = 'Engine' | 'DataManagement' | 'ClusterManager';
 
 export interface EngineSchema {
     clusterType: 'Engine';
@@ -61,61 +61,6 @@ export interface ClusterMangerSchema {
 export interface DataManagementSchema {
     clusterType: 'DataManagement';
 }
-export interface KustoARGColumn {
-    /**
-     * Name of the column in a table
-     */
-    name: string;
-
-    /**
-     * Type of the column
-     */
-    type: any
-
-    /**
-     * Documentation of the column
-     */
-    docstring?: string;
-}
-export interface KustoARGTable {
-    /**
-     * Name of the table
-     */
-    name: string;
-
-    /**
-     * The columns in the table
-     */
-    columns: KustoARGColumn[];
-
-    /**
-     * The documentation of the table
-     */
-    docstring?: string;
-}
-export interface KustoARGDatabase {
-    /**
-     * Name of the database
-     */
-    name: string;
-
-    /**
-     * Tables in the database
-     */
-    tables: KustoARGTable[];
-}
-export interface KustoARGSchema {
-    /**
-     * The type of Kusto cluster, which is "Engine" in this case.
-     */
-    clusterType: "ARG";
-
-    /**
-     * The tables in your schema.
-     */
-    tables: KustoARGTable[];
-
-}
 
 /**
  * Schema types:
@@ -123,7 +68,7 @@ export interface KustoARGSchema {
  * Cluster Manager – Internal only. A schema for clusters that manages other clusters.
  * Data Management – Internal only. A schema for ingestion point operations.
  */
-export type Schema = EngineSchema | ClusterMangerSchema | DataManagementSchema | KustoARGSchema;
+export type Schema = EngineSchema | ClusterMangerSchema | DataManagementSchema;
 
 const dotnetTypeToKustoType = {
     'System.SByte': 'bool',
